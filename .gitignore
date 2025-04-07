@@ -1,0 +1,3 @@
+#Ignorar archivos de configuración local de Qt Creator
+*.pro.user
+
