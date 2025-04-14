@@ -1,0 +1,8 @@
+/build/
+/Desencriptado_imagen_BMP/
+/*.user
+*.pro.user
+*.o
+*.obj
+*.exe
+*.bmp
