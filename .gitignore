@@ -1,3 +1,14 @@
+<<<<<<< HEAD
 #Ignorar archivos de configuración local de Qt Creator
 *.pro.user
 
+=======
+/build/
+/Desencriptado_imagen_BMP/
+/*.user
+*.pro.user
+*.o
+*.obj
+*.exe
+*.bmp
+>>>>>>> 57afd0df1953b2676b70443eb6ac83f076d44663
