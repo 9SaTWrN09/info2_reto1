@@ -10,3 +10,8 @@ SOURCES += \
 HEADERS += \
     funciones.h \
     imagenes_y_txt.h
+
+
+DISTFILES += \
+    archivos/*.bmp \
+    archivos/*.txt
