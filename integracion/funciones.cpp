@@ -46,7 +46,7 @@ unsigned int** cargar_txts(const char* ruta_base, unsigned char* M, int& n_txt, 
         't','x','t','/',
         'M','0','0','0','.','t','x','t','\0'
     };
-
+    //A más de 100 no carga
     unsigned int** txts = new unsigned int*[101];
     n_txt = 0;
     bool flag = false;

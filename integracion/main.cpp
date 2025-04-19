@@ -17,6 +17,7 @@ int main()
     unsigned char* IM      = loadPixels("archivos/I_M.bmp", width, height);
     unsigned char* M       = loadPixels("archivos/M.bmp", width_m, height_m);
 
+
     // ======== VERIFICACIÓN DE CARGA DE ARCHIVOS ========
     if (bufferA == nullptr)
     {
@@ -65,7 +66,7 @@ int main()
     else cout << "Se encontraron " << n_txt << " txts" << endl;
 
     // ======== PREPARACIÓN DE CONTROL DE FLUJO ========
-    int* operaciones = new int[n_txt - 1]; // Arreglo dinámico para guardar operaciones
+    int* operaciones = new int[n_txt - 1]; // Arreglo dinámico para guardar operaciones inversas, hacer la función inversa de las inversas!!
     int semilla_actual = 0;
     int flag_shift_detectado = 0;
 
@@ -102,7 +103,9 @@ int main()
                 }
                 else;
                 {
-                    if (coincidencias < largo_mascara && t > 17) flag_shift_detectado++;
+                    if((coincidencias < largo_mascara) && (t > 17) ){
+                    flag_shift_detectado++;
+                    }
                 }
             }
 
