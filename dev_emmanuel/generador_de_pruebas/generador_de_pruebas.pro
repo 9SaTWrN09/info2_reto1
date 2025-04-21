@@ -20,8 +20,26 @@ HEADERS += \
     funciones.h \
     imagenes_y_txt.h
 
-OTHER_FILES += archivo/*.bmp \
-               archivo/*.txt
 
 
 QT += gui widgets
+
+DISTFILES += \
+    archivos/I_D.bmp \
+    archivos/I_M.bmp \
+    archivos/M.bmp \
+    archivos/txt/M0.txt \
+    archivos/txt/M001.txt \
+    archivos/txt/M001.txt \
+    archivos/txt/M001.txt \
+    archivos/txt/M1.txt \
+    archivos/txt/M2.txt \
+    archivos/txt/M3.txt \
+    archivos/txt/M4.txt \
+    archivos/txt/M5.txt \
+    archivos/txt/M6.txt \
+    archivos/pruebas \
+    build/Desktop_Qt_6_8_3_MinGW_64_bit-Debug/.qmake.stash
+
+
+INCLUDEPATH += $$PWD/archivos/pruebas

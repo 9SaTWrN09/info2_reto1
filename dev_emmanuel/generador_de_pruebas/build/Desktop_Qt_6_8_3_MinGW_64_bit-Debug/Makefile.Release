@@ -16,7 +16,7 @@ CXX           = g++
 DEFINES       = -DUNICODE -D_UNICODE -DWIN32 -DMINGW_HAS_SECURE_API=1 -DQT_QML_DEBUG -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -fno-keep-inline-dllexport -O2 -Wall -Wextra -Wextra $(DEFINES)
 CXXFLAGS      = -fno-keep-inline-dllexport -O2 -std=gnu++1z -Wall -Wextra -Wextra -fexceptions -mthreads $(DEFINES)
-INCPATH       = -I../../../generador_de_pruebas -I. -IC:/Qt/6.8.3/mingw_64/include -IC:/Qt/6.8.3/mingw_64/include/QtWidgets -IC:/Qt/6.8.3/mingw_64/include/QtGui -IC:/Qt/6.8.3/mingw_64/include/QtCore -Irelease -I/include -IC:/Qt/6.8.3/mingw_64/mkspecs/win32-g++ 
+INCPATH       = -I../../../generador_de_pruebas -I. -I../../archivos/pruebas -IC:/Qt/6.8.3/mingw_64/include -IC:/Qt/6.8.3/mingw_64/include/QtWidgets -IC:/Qt/6.8.3/mingw_64/include/QtGui -IC:/Qt/6.8.3/mingw_64/include/QtCore -Irelease -I/include -IC:/Qt/6.8.3/mingw_64/mkspecs/win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-s -Wl,-subsystem,console -mthreads
 LIBS        =        C:\Qt\6.8.3\mingw_64\lib\libQt6Widgets.a C:\Qt\6.8.3\mingw_64\lib\libQt6Gui.a C:\Qt\6.8.3\mingw_64\lib\libQt6Core.a   
@@ -57,7 +57,21 @@ OBJECTS       = release/main.o \
 		release/funciones.o \
 		release/imagenes_y_txt.o
 
-DIST          =  ..\..\funciones.h \
+DIST          = archivos/I_D.bmp \
+		archivos/I_M.bmp \
+		archivos/M.bmp \
+		archivos/txt/M0.txt \
+		archivos/txt/M001.txt \
+		archivos/txt/M001.txt \
+		archivos/txt/M001.txt \
+		archivos/txt/M1.txt \
+		archivos/txt/M2.txt \
+		archivos/txt/M3.txt \
+		archivos/txt/M4.txt \
+		archivos/txt/M5.txt \
+		archivos/txt/M6.txt \
+		archivos/pruebas \
+		build/Desktop_Qt_6_8_3_MinGW_64_bit-Debug/.qmake.stash ..\..\funciones.h \
 		..\..\imagenes_y_txt.h ..\..\main.cpp \
 		..\..\funciones.cpp \
 		..\..\imagenes_y_txt.cpp
@@ -130,9 +144,9 @@ compiler_clean: compiler_moc_predefs_clean
 
 release/main.o: ../../main.cpp ../../funciones.h \
 		../../imagenes_y_txt.h \
-		C:/Qt/6.8.3/mingw_64/include/QtGui/QImage \
-		C:/Qt/6.8.3/mingw_64/include/QtGui/qimage.h \
-		C:/Qt/6.8.3/mingw_64/include/QtGui/qtguiglobal.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/QString \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qstring.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qchar.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qglobal.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qtversionchecks.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qtconfiginclude.h \
@@ -178,31 +192,22 @@ release/main.o: ../../main.cpp ../../funciones.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qtresource.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qttranslation.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qversiontagging.h \
-		C:/Qt/6.8.3/mingw_64/include/QtGui/qtgui-config.h \
-		C:/Qt/6.8.3/mingw_64/include/QtGui/qtguiexports.h \
-		C:/Qt/6.8.3/mingw_64/include/QtGui/qcolor.h \
-		C:/Qt/6.8.3/mingw_64/include/QtGui/qrgb.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qnamespace.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qcompare.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qcomparehelpers.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/q20type_traits.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringview.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qbytearray.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qrefcount.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qnamespace.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qtmetamacros.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringlist.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qlist.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qarraydatapointer.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qarraydataops.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qarraydata.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qpair.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qarraydatapointer.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qarraydataops.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qcontainertools_impl.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qxptype_traits.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/q20functional.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/q20memory.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qhashfunctions.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qstring.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qchar.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringview.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qbytearray.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qrefcount.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qbytearrayalgorithms.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qbytearrayview.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringfwd.h \
@@ -214,44 +219,14 @@ release/main.o: ../../main.cpp ../../funciones.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringtokenizer.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringbuilder.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringconverter.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringconverter_base.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qiterator.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qbytearraylist.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qalgorithms.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringmatcher.h \
-		C:/Qt/6.8.3/mingw_64/include/QtGui/qrgba64.h \
-		C:/Qt/6.8.3/mingw_64/include/QtGui/qpaintdevice.h \
-		C:/Qt/6.8.3/mingw_64/include/QtGui/qwindowdefs.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qobjectdefs.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qobjectdefs_impl.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qfunctionaltools_impl.h \
-		C:/Qt/6.8.3/mingw_64/include/QtGui/qwindowdefs_win.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qrect.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qmargins.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/q23utility.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/q20utility.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qsize.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qpoint.h \
-		C:/Qt/6.8.3/mingw_64/include/QtGui/qpixelformat.h \
-		C:/Qt/6.8.3/mingw_64/include/QtGui/qtransform.h \
-		C:/Qt/6.8.3/mingw_64/include/QtGui/qpolygon.h \
-		C:/Qt/6.8.3/mingw_64/include/QtGui/qregion.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qdatastream.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qscopedpointer.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qiodevicebase.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qspan.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/q20iterator.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qline.h
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringconverter_base.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o ..\..\main.cpp
 
 release/funciones.o: ../../funciones.cpp ../../funciones.h \
-		../../imagenes_y_txt.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\funciones.o ..\..\funciones.cpp
-
-release/imagenes_y_txt.o: ../../imagenes_y_txt.cpp ../../imagenes_y_txt.h \
-		C:/Qt/6.8.3/mingw_64/include/QtGui/QImage \
-		C:/Qt/6.8.3/mingw_64/include/QtGui/qimage.h \
-		C:/Qt/6.8.3/mingw_64/include/QtGui/qtguiglobal.h \
+		../../imagenes_y_txt.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/QString \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qstring.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qchar.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qglobal.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qtversionchecks.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qtconfiginclude.h \
@@ -297,31 +272,101 @@ release/imagenes_y_txt.o: ../../imagenes_y_txt.cpp ../../imagenes_y_txt.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qtresource.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qttranslation.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qversiontagging.h \
-		C:/Qt/6.8.3/mingw_64/include/QtGui/qtgui-config.h \
-		C:/Qt/6.8.3/mingw_64/include/QtGui/qtguiexports.h \
-		C:/Qt/6.8.3/mingw_64/include/QtGui/qcolor.h \
-		C:/Qt/6.8.3/mingw_64/include/QtGui/qrgb.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qnamespace.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qcompare.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qcomparehelpers.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/q20type_traits.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringview.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qbytearray.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qrefcount.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qnamespace.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qtmetamacros.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringlist.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qlist.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qarraydatapointer.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qarraydataops.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qarraydata.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qpair.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qarraydatapointer.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qarraydataops.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qcontainertools_impl.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qxptype_traits.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/q20functional.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/q20memory.h \
-		C:/Qt/6.8.3/mingw_64/include/QtCore/qhashfunctions.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qbytearrayalgorithms.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qbytearrayview.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringfwd.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringliteral.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringalgorithms.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qlatin1stringview.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qanystringview.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qutf8stringview.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringtokenizer.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringbuilder.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringconverter.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringconverter_base.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\funciones.o ..\..\funciones.cpp
+
+release/imagenes_y_txt.o: ../../imagenes_y_txt.cpp ../../imagenes_y_txt.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/QString \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qstring.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qchar.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qglobal.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qtversionchecks.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qtconfiginclude.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qconfig.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qtcore-config.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qtconfigmacros.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qtdeprecationdefinitions.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qtcoreexports.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qcompilerdetection.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qprocessordetection.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qsystemdetection.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qtdeprecationmarkers.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qtclasshelpermacros.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qtpreprocessorsupport.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qassert.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qtnoop.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qtypes.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qtversion.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qtypeinfo.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qcontainerfwd.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qsysinfo.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qlogging.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qflags.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qcompare_impl.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qatomic.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qbasicatomic.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qatomic_cxx11.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qgenericatomic.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qyieldcpu.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qconstructormacros.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qdarwinhelpers.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qexceptionhandling.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qforeach.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qttypetraits.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qfunctionpointer.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qglobalstatic.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qmalloc.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qminmax.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qnumeric.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qoverload.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qswap.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qtenvironmentvariables.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qtresource.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qttranslation.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qversiontagging.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qcompare.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qcomparehelpers.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/q20type_traits.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringview.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qbytearray.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qrefcount.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qnamespace.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qtmetamacros.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qarraydata.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qpair.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qarraydatapointer.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qarraydataops.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qcontainertools_impl.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qxptype_traits.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/q20functional.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/q20memory.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qbytearrayalgorithms.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qbytearrayview.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringfwd.h \
@@ -334,6 +379,16 @@ release/imagenes_y_txt.o: ../../imagenes_y_txt.cpp ../../imagenes_y_txt.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringbuilder.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringconverter.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringconverter_base.h \
+		C:/Qt/6.8.3/mingw_64/include/QtGui/QImage \
+		C:/Qt/6.8.3/mingw_64/include/QtGui/qimage.h \
+		C:/Qt/6.8.3/mingw_64/include/QtGui/qtguiglobal.h \
+		C:/Qt/6.8.3/mingw_64/include/QtGui/qtgui-config.h \
+		C:/Qt/6.8.3/mingw_64/include/QtGui/qtguiexports.h \
+		C:/Qt/6.8.3/mingw_64/include/QtGui/qcolor.h \
+		C:/Qt/6.8.3/mingw_64/include/QtGui/qrgb.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qstringlist.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qlist.h \
+		C:/Qt/6.8.3/mingw_64/include/QtCore/qhashfunctions.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qiterator.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qbytearraylist.h \
 		C:/Qt/6.8.3/mingw_64/include/QtCore/qalgorithms.h \
