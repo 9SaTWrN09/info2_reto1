@@ -1,7 +1,7 @@
 #ifndef FUNCIONES_H
 #define FUNCIONES_H
 
-// TRANSFORMACIONES INVERSAS
+// TRANSFORMACIONES
 
 void aplicar_xor(unsigned char* in, unsigned char* mask, unsigned char* out, int size);
 void rotar_izquierda(unsigned char* in, int bits, unsigned char* out, int size);

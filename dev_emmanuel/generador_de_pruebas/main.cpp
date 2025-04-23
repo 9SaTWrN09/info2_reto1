@@ -1,107 +1,105 @@
 #include <iostream>
 #include <fstream>
-#include <filesystem>
 #include "funciones.h"
 #include "imagenes_y_txt.h"
 
 using namespace std;
-namespace fs = std::filesystem;
 
-// Función para guardar la imagen transformada
-void guardar_imagen_transformada(
-    unsigned char* pixels,
-    int width,
-    int height,
-    const string& ruta_salida
-    ) {
-    exportImage(pixels, width, height, QString::fromStdString(ruta_salida));
+void generar_txt_enmascarado_lineal
+    (unsigned char* imagen,unsigned char* mascara,int semilla,int largo_mascara,const char* nombre_txt);
+
+void generar_prueba_completa
+    (const char* ruta_I_O,const char* ruta_mascara,int semilla,int tipo_desplazamiento,int bits_desplazamiento);
+
+int main()
+{
+    generar_prueba_completa(
+        "archivos/I_O.bmp",    // Imagen original
+        "archivos/M.bmp",      // Máscara
+        1234,         // Semilla
+        2,            // Tipo de desplazamiento (1 = SHIFT_R) (2 = SHIFT_L)
+        8             // Bits de desplazamiento
+        );
+
+    return 0;
 }
 
 void generar_prueba_completa(
-    const string& ruta_imagen,
-    const string& ruta_mascara,
-    const string& carpeta_salida,
+    const char* ruta_I_O,
+    const char* ruta_mascara,
     int semilla,
     int tipo_desplazamiento,
     int bits_desplazamiento
-    ) {
+    )
+{
     // Cargar imágenes
     int width, height, mask_width, mask_height;
-    unsigned char* imagen = loadPixels(QString::fromStdString(ruta_imagen), width, height);
-    unsigned char* mascara = loadPixels(QString::fromStdString(ruta_mascara), mask_width, mask_height);
+    unsigned char* IO = loadPixels(QString(ruta_I_O), width, height);
+    if (IO != nullptr) cout << "I_O cargada correctamente" << endl;else cout << "Fallo en cargo de I_D" << endl;
 
-    if (!imagen || !mascara) {
-        cerr << "Error al cargar imágenes." << endl;
-        return;
-    }
+    unsigned char* mascara = loadPixels(QString(ruta_mascara), mask_width, mask_height);
+    if (mascara != nullptr) cout << "mascara cargada correctamente" << endl;else cout << "Fallo en cargo de mascara" << endl;
 
     // Aplicar desplazamiento a toda la imagen
     unsigned char* imagen_desplazada = new unsigned char[width * height * 3];
-    switch (tipo_desplazamiento) {
-    case 1: desplazar_derecha(imagen, bits_desplazamiento, imagen_desplazada, width * height * 3); break;
-    case 2: desplazar_izquierda(imagen, bits_desplazamiento, imagen_desplazada, width * height * 3); break;
-    default: cerr << "Tipo de desplazamiento inválido." << endl; return;
+    switch (tipo_desplazamiento)
+    {
+        case 1: desplazar_derecha(IO, bits_desplazamiento, imagen_desplazada, width * height * 3); break;
+        case 2: desplazar_izquierda(IO, bits_desplazamiento, imagen_desplazada, width * height * 3); break;
+        default: cerr << "Tipo de desplazamiento inválido." << endl; return;
     }
 
     // Guardar imagen desplazada
-    guardar_imagen_transformada(imagen_desplazada, width, height, carpeta_salida + "/desplazada.bmp");
+    exportImage(imagen_desplazada, width, height, "archivos/pruebas/I_D.bmp");
 
-    // Calcular posición de la máscara basada en la semilla
-    int x_start = semilla % (width - mask_width);
-    int y_start = (semilla / (width - mask_width)) % (height - mask_height);
+    // Largo de la región enmascarada (en bytes)
+    int largo_mascara = mask_width * mask_height * 3;
 
-    // Aplicar XOR solo en la región de la máscara
-    unsigned char* enmascarado = new unsigned char[width * height * 3];
-    memcpy(enmascarado, imagen_desplazada, width * height * 3); // Copiar imagen desplazada
-
-    for (int y = 0; y < mask_height; y++) {
-        for (int x = 0; x < mask_width; x++) {
-            int pos_imagen = ((y_start + y) * width + (x_start + x)) * 3;
-            int pos_mascara = (y * mask_width + x) * 3;
-
-            if (pos_imagen + 2 < width * height * 3) { // Evitar desbordamiento
-                enmascarado[pos_imagen]     ^= mascara[pos_mascara];
-                enmascarado[pos_imagen + 1] ^= mascara[pos_mascara + 1];
-                enmascarado[pos_imagen + 2] ^= mascara[pos_mascara + 2];
-            }
-        }
-    }
-
-    // Guardar TXT con semilla y datos
-    ofstream archivo_txt(carpeta_salida + "/datos.txt");
-    if (!archivo_txt.is_open()) {
-        cerr << "Error al crear TXT." << endl;
+    // Validación de seguridad (opcional pero recomendable)
+    if (semilla + largo_mascara > width * height * 3)
+    {
+        cerr << "Error: la semilla + tamaño de máscara excede el tamaño de la imagen." << endl;
         return;
     }
 
-    archivo_txt << semilla << endl;
-    for (int y = 0; y < mask_height; y++) {
-        for (int x = 0; x < mask_width; x++) {
-            int pos = ((y_start + y) * width + (x_start + x)) * 3;
-            archivo_txt << (int)enmascarado[pos] << " "
-                        << (int)enmascarado[pos + 1] << " "
-                        << (int)enmascarado[pos + 2] << endl;
-        }
-    }
+    // Generar el .txt con los valores imagen + máscara (formato real del desafío)
+
+    generar_txt_enmascarado_lineal(IO, mascara, semilla, largo_mascara, "archivos/txt/M0.txt");
+
+    generar_txt_enmascarado_lineal(imagen_desplazada, mascara, semilla, largo_mascara, "archivos/txt/M1.txt");
 
     // Liberar memoria
-    delete[] imagen;
+    delete[] IO;
     delete[] mascara;
     delete[] imagen_desplazada;
-    delete[] enmascarado;
-    archivo_txt.close();
 }
 
-int main() {
-    generar_prueba_completa(
-        "I_D.bmp",
-        "M.bmp",
-        "pruebas", // Carpeta de salida
-        1234,              // Semilla (define posición de la máscara)
-        1,                  // Tipo de desplazamiento (1 = SHIFT_R)
-        3                   // Bits desplazados
-        );
+void generar_txt_enmascarado_lineal
+    (
+        unsigned char* imagen,
+        unsigned char* mascara,
+        int semilla,
+        int largo_mascara,
+        const char* nombre_txt
+        )
+{
+    ofstream archivo(nombre_txt);
+    if (!archivo.is_open())
+    {
+        cerr << "No se pudo crear " << nombre_txt << endl;
+        return;
+    }
 
-    cout << "Prueba generada exitosamente." << endl;
-    return 0;
+    archivo << semilla << endl;
+
+    for (int i = 0; i < largo_mascara; i += 3)
+    {
+        int r = imagen[semilla + i]     + mascara[i];
+        int g = imagen[semilla + i + 1] + mascara[i + 1];
+        int b = imagen[semilla + i + 2] + mascara[i + 2];
+
+        archivo << (r % 256) << " " << (g % 256) << " " << (b % 256) << endl;
+    }
+
+    archivo.close();
 }

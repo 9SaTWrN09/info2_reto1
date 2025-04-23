@@ -1,13 +1,52 @@
-<<<<<<< HEAD
-#Ignorar archivos de configuración local de Qt Creator
-*.pro.user
+# ===== INCLUSIONES EXPLÍCITAS =====
+!*.txt
+!*.bmp
 
-=======
-/build/
-/Desencriptado_imagen_BMP/
-/*.user
+# ===== CONFIGURACIÓN DE QT CREATOR =====
 *.pro.user
+*.user
+*.qbs.user
+*.creator.*
+*.autosave
+*.qmake.stash
+*.qmlproject.user
+
+# ===== ARCHIVOS BINARIOS Y OBJETOS =====
 *.o
 *.obj
 *.exe
->>>>>>> 57afd0df1953b2676b70443eb6ac83f076d44663
+*.dll
+*.so
+*.a
+*.lib
+*.pdb
+*.idx
+*.log
+*.tmp
+
+# ===== CARPETAS DE COMPILACIÓN (VARIOS FRAMEWORKS) =====
+build/
+build-*/
+cmake-build-*/
+*/build/
+*/build-*/
+**/build/
+**/build-*/
+
+# ===== ARCHIVOS MAKE Y CMAKE =====
+Makefile*
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+
+# ===== ARCHIVOS DE QT CREATOR GENERADOS =====
+*.qtc
+.cache/
+.qtc_clangd/
+
+# ===== SISTEMAS OPERATIVOS Y EDITORES =====
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
