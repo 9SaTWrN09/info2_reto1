@@ -49,6 +49,10 @@ int main()
     unsigned char* actual = bufferA;      // apuntador al Buffer con el arreglo dinamico que contiene la informacion del paso a operar para desencriptar
     unsigned char* siguiente = bufferB;   // apuntador al Buffer con el arrglo dinamico en el se van a almacenar las transformaciones del Buffer actual para su confirmacion
     bool operacion_valida = false;        // variable de control que permite saber si ya se encontro la operacion correspondiente al paso actual
+    int coincidencia_1 = 0;     // variable de control para detectar desplazamientos
+    int coincidencia_2 = 0;     // variable de control para detectar desplazamientos
+    int coincidencias_min_dist = largo_mascara;
+    unsigned int t_min = 0;
 
     // ======== BUCLE PRINCIPAL DE INVERSIÓN ========
     for (int i = n_txt-1; i >= 0; i--)
@@ -72,7 +76,7 @@ int main()
         }
 
         operacion_valida = false;   // se inicia en false porque no se ha encontrado la transformacion del ciclo actaul
-        int coincidencia_1 = 0;     // variable de control para detectar desplazamientos
+
 
         for (int t = 1; t <= 33 && !operacion_valida; t++)
         {
@@ -91,16 +95,46 @@ int main()
                 operacion_valida = true; // se activa la variable de control
                 operaciones[i] = t;      // se almacena la operacion encontrada
             }
+            if ( coincidencia_2 ) //Si ha habido un desplazamiento se activa
+            {
+                int temp = coincidencia_2 - coincidencias;                 // distancia entre el ultimo displazamiento y las coincidencias actuales
+                unsigned int diferencia_actual = temp < 0 ? -temp : temp;   // aplicacion del valor absoluto
 
-            if (t == 17) coincidencia_1 = coincidencias; // se toma la cantidad de coincidencias que hibieron con la operacion de rotacion de 8 bits a izquierda por si esta fallo y se necesita encontrar el valor del desplazamiento
+                temp = coincidencia_2 - coincidencias_min_dist;              // distancia entre el ultimo displazamiento y las coincidencias con el menor desplazamiento encontrado
+                unsigned int diferencia_anterior = temp < 0 ? -temp : temp;  // aplicacion del valor absoluto
+
+                cout << "coinci 2 - coinci = | " << coincidencia_2 << " - " << coincidencias << " = " << diferencia_actual <<  endl;
+                cout << "coinci 2 - min_dist_first_despl = | " << coincidencia_2 << " - " << coincidencias_min_dist << " = " << diferencia_anterior << endl
+                     << "                     " << endl;
+
+                if ( diferencia_actual < diferencia_anterior)   // verifica si la diferencia actual es menor a la aterior mejor diferencia
+                {
+                    cout << "1 |min dist = |" << coincidencias_min_dist << "| t_min = |" << t_min << "|" << endl;
+                    coincidencias_min_dist = coincidencias;        // aplica las diferencias
+                    t_min = t;                                     // guarda la t de la menor diferencia
+                    cout << "2 |min dist = |" << coincidencias_min_dist << "| t_min = |" << t_min << "|" << endl;
+                }
+            }
+            if (t == 17)       // si llegamos al limite antes de los desplazamientos hace las acciones devidas
+            {
+                if ( coincidencia_2 )     // si ha habido un desplazamiento, verifica cual fue la mayor coincidencia en las anteriores operaciones y la toma como la correcta
+                {
+                    t = t_min;
+                    operacion_valida = true;
+                    aplicar_operacion_inversa(actual, t, siguiente, IM, width * height * 3); // funcion que aplica la operacion correspondiente al t del ciclo al arreglo actual y lo almacena en siguiente
+                }
+                else coincidencia_1 = coincidencias; // se toma la cantidad de coincidencias que hibieron con la operacion de rotacion de 8 bits a izquierda por si esta fallo y se necesita encontrar el valor del desplazamiento
+            }
 
             if (t >= 18)  // Si estamos verificando desplazamientos
             {
                 if (coincidencia_1 != coincidencias) // si el desplazamiento corresponde a una coincidencia mayor a la norma
                 {
+                    coincidencia_2 = coincidencias;
                     cout << "t = |"               << t              << "|" << endl
                          << "coincidencias 1 = |" << coincidencia_1 << "|" << endl
-                         << "coincidencias 2 = |" << coincidencias << "|" << endl;
+                         << "coincidencias 2 = |" << coincidencia_2 << "|" << endl;
+
                     operacion_valida = true; // se activa la variable de control
                     operaciones[i] = t;      // se almacena la operacion encontrada
                 }
@@ -116,6 +150,7 @@ int main()
             cout << "Fallo en la inversión en paso " << i << endl;
             return 0;
         }
+        cout << "______________________________________________________i = |" << i << "|" << endl;
         cont_buffer++;  // Se suma una unidad al parametro de control de intercambio de buffer
     }
 
