@@ -98,10 +98,7 @@ int main()
 
             return 0;
         }
-        int op;
-        op = obtener_inverso_t(operaciones[i]);
-        operaciones_original[i] = op;
-
+        operaciones_original[i] = obtener_inverso_t(operaciones[i]);
 
         cont_buffer++;
     }

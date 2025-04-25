@@ -139,77 +139,9 @@ bool buscar_xor_rot(unsigned char* actual,
     }
     else
     {
-        t_out = 0;
         return false;
     }
 }
-
-/**
- * @brief Busca la operación XOR (t = 1) o rotaciones (t = 2..17) que
- *        produce coincidencia plena con el .txt actual.
- *
- * @param actual         Buffer fuente (imagen del paso i + 1).
- * @param siguiente      Buffer destino (resultado provisional).
- * @param txt_i          Valores desenmascarados del .txt (incluye semilla en txt_i[0]).
- * @param semilla        Semilla del .txt actual.
- * @param largo_mask     Cantidad de bytes cubiertos por la máscara.
- * @param IM             Imagen IM (necesaria para XOR).
- * @param total_bytes    Tamaño completo de la imagen (width * height * 3).
- * @param t_out          Devuelve el t válido (1..17) si existe, 0 en caso contrario.
- *
- * @return true  si encontró XOR o una rotación correcta.
- *         false en caso contrario.
- */
-
-bool buscar_xor_rot2(unsigned char* actual,
-                    unsigned char* siguiente,
-                    unsigned int* txt_i,
-                    int semilla,
-                    int largo_mask,
-                    unsigned char* IM,
-                    int total_bytes,
-                    int &t_out,
-                    int &coincid_ref)
-{
-    int t_min = 0;
-    int coincidencias_min_dist = largo_mask;
-    for (int t = 1; t <= 33 ; t++)
-    {
-        aplicar_operacion_inversa(actual, t, siguiente, IM, total_bytes);
-
-        int coincid = verificar_enmascaramiento(siguiente,txt_i,semilla,largo_mask);
-
-        int temp = coincid_ref - coincid;                 // distancia entre el ultimo displazamiento y las coincidencias actuales
-        unsigned int diferencia_actual = temp < 0 ? -temp : temp;   // aplicacion del valor absoluto
-
-        temp = coincid_ref - coincidencias_min_dist;              // distancia entre el ultimo displazamiento y las coincidencias con el menor desplazamiento encontrado
-        unsigned int diferencia_anterior = temp < 0 ? -temp : temp;  // aplicacion del valor absoluto
-
-        if ( diferencia_actual == 0)//cout << "dif act = 0" << endl;
-            if ( diferencia_anterior == 0)//cout << "dif ant = 0" << endl;
-                if ( diferencia_actual <= diferencia_anterior)   // verifica si la diferencia actual es menor a la aterior mejor diferencia
-                {
-                    coincidencias_min_dist = coincid;        // aplica las diferencias
-                    t_min = t;                                     // guarda la t de la menor diferencia
-                }
-
-
-
-    }
-    if (t_min)
-    {
-        t_out = t_min;
-        coincid_ref = coincidencias_min_dist;
-        aplicar_operacion_inversa(actual, t_out, siguiente, IM, total_bytes);
-        return true;
-    }
-    else
-    {
-        t_out = 0;
-        return false;
-    }
-}
-
 
 
 /**
