@@ -3,13 +3,17 @@ CONFIG += console c++17
 CONFIG -= app_bundle
 
 SOURCES += \
-        funciones.cpp \
         imagenes_y_txt.cpp \
-        main.cpp
+        main.cpp \
+        operaciones_bits.cpp \
+        otros.cpp \
+        strings_dinamicos.cpp
 
 HEADERS += \
-    funciones.h \
-    imagenes_y_txt.h
+    imagenes_y_txt.h \
+    operaciones_bits.h \
+    otros.h \
+    strings_dinamicos.h
 
 
 DISTFILES += \

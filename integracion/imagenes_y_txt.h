@@ -12,4 +12,7 @@ bool exportImage(unsigned char* pixelData, int width, int height, QString archiv
 // Función para cargar un archivo .txt con semilla y tripletas RGB
 unsigned int* loadSeedMasking(const char* nombreArchivo, int &seed, int &n_pixels);
 
+// LECTURA Y PROCESAMIENTO DE TXT
+unsigned int** cargar_txts(unsigned char* M, int& n_txt, int& largo_mascara);
+
 #endif // IMAGENES_Y_TXT_H

@@ -13,8 +13,8 @@ void generar_prueba_completa
 
 int main()
 {
-    int longit = 7;
-    unsigned int operac[] = {1, 13, 20, 15, 1, 15,8};
+    int longit = 7;        //2R       2L     3R
+    unsigned int operac[] = {20, 13, 28, 15, 21, 1,8};
     int semillas[7] = {4067790, 797394, 1189581, 3753699, 3444696,3749487,3036228};
 
     generar_prueba_completa

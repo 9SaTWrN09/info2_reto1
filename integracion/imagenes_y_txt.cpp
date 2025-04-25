@@ -1,9 +1,46 @@
 #include "imagenes_y_txt.h"
 #include <QImage>
 #include <fstream>
-#include <iostream>
+#include "strings_dinamicos.h"
 
 using namespace std;
+
+unsigned int** cargar_txts(unsigned char* M, int& n_txt, int& largo_mascara)
+{
+    char nombreArchivo[32]; // Buffer para nombres dinámicos
+    unsigned int** txts = new unsigned int*[101]; // Máximo 101 archivos
+    n_txt = 0;
+    bool not_find_txt = true;
+
+    for (int i = 0; i <= 100 && not_find_txt; i++)
+    {
+        generar_nombre_txt(i, nombreArchivo);  // Generar nombre del archivo actual
+
+        int seed = 0, n_pixels = 0;
+        unsigned int* txtactual = loadSeedMasking(nombreArchivo, seed, n_pixels);
+
+        if (txtactual == nullptr)
+        {
+            not_find_txt = false; // Si no se puede abrir el archivo, terminamos el bucle
+        }
+        else
+        {
+            unsigned int* txtnuevo = new unsigned int[largo_mascara + 1];
+            txtnuevo[0] = seed;
+
+            for (int k = 0; k < largo_mascara; k++)
+            {
+                txtnuevo[k + 1] = txtactual[k] - M[k];
+            }
+
+            txts[n_txt++] = txtnuevo;
+            delete[] txtactual;
+        }
+    }
+
+    return txts;
+}
+
 
 unsigned char* loadPixels(QString input, int &width, int &height){
     /*
@@ -27,8 +64,8 @@ unsigned char* loadPixels(QString input, int &width, int &height){
     QImage imagen(input);
 
     // Verifica si la imagen fue cargada correctamente
-    if (imagen.isNull()) {
-        cout << "Error: No se pudo cargar la imagen BMP." << std::endl;
+    if (imagen.isNull())
+    {
         return nullptr; // Retorna un puntero nulo si la carga falló
     }
 
@@ -91,11 +128,9 @@ bool exportImage(unsigned char* pixelData, int width,int height, QString archivo
     // Guardar la imagen en disco como archivo BMP
     if (!outputImage.save(archivoSalida, "BMP")) {
         // Si hubo un error al guardar, mostrar mensaje de error
-        cout << "Error: No se pudo guardar la imagen BMP modificada.";
         return false; // Indica que la operación falló
     } else {
         // Si la imagen fue guardada correctamente, mostrar mensaje de éxito
-        cout << "Imagen BMP modificada guardada como " << archivoSalida.toStdString() << endl;
         return true; // Indica éxito
     }
 
@@ -125,7 +160,6 @@ unsigned int* loadSeedMasking(const char* nombreArchivo, int &seed, int &n_pixel
     ifstream archivo(nombreArchivo);
     if (!archivo.is_open()) {
         // Verificar si el archivo pudo abrirse correctamente
-        cout << "No se pudo abrir el archivo." << endl;
         return nullptr;
     }
 
@@ -145,8 +179,8 @@ unsigned int* loadSeedMasking(const char* nombreArchivo, int &seed, int &n_pixel
     archivo.open(nombreArchivo);
 
     // Verificar que se pudo reabrir el archivo correctamente
-    if (!archivo.is_open()) {
-        cout << "Error al reabrir el archivo." << endl;
+    if (!archivo.is_open())
+    {
         return nullptr;
     }
 
@@ -169,8 +203,8 @@ unsigned int* loadSeedMasking(const char* nombreArchivo, int &seed, int &n_pixel
     archivo.close();
 
     // Mostrar información de control en consola
-    cout << "Semilla: " << seed << endl;
-    cout << "Cantidad de píxeles leídos: " << n_pixels << endl;
+    //cout << "Semilla: " << seed << endl;
+    //cout << "Cantidad de pixeles leidos: " << n_pixels << endl;
 
     // Retornar el puntero al arreglo con los datos RGB
     return RGB;
