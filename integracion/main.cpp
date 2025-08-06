@@ -11,7 +11,7 @@ int main()
     int width = 0, height = 0;
     int width_m = 0, height_m = 0;
 
-    unsigned char* bufferA = loadPixels("archivos/I_D.bmp", width, height); // Buffer con I_I
+    unsigned char* bufferA = loadPixels("archivos/I_D.bmp", width, height); // Buffer con I_D
     unsigned char* bufferB = new unsigned char[width * height * 3];         // Buffer para almacenar la imagen transformada
 
     unsigned char* IM      = loadPixels("archivos/I_M.bmp", width, height);    // IM utilizada en XOR
