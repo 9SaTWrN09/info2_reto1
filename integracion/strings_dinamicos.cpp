@@ -103,3 +103,10 @@ void generar_nombre_prueba(int numero, char* nombreArchivo)
     nombreArchivo[i++] = 'p';
     nombreArchivo[i]   = '\0'; // Fin del string
 }
+
+/*
+ * Desarrollado por:
+ *      Juan Pauolo Moncada(Juanpa) - [@JuanPa](https://github.com/Paulo848) correo: moncadamoralesjuanpaulo@gmail.com
+ *
+ *      Emmanuel López Ramírez(Entropy) - [@EmmaNuel-Network](https://github.com/EmmaNuel-Network) correo: entropy.casp9@gmail.com
+*/

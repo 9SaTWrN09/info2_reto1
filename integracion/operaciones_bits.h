@@ -15,3 +15,10 @@ int verificar_enmascaramiento(unsigned char* imagen, unsigned int* datos_txt, in
 void aplicar_operacion_inversa(unsigned char* in, int t, unsigned char* out, unsigned char* IM, int size);
 
 #endif // OPERACIONES_BITS_H
+
+/*
+ * Desarrollado por:
+ *      Juan Pauolo Moncada(Juanpa) - [@JuanPa](https://github.com/Paulo848) correo: moncadamoralesjuanpaulo@gmail.com
+ *
+ *      Emmanuel López Ramírez(Entropy) - [@EmmaNuel-Network](https://github.com/EmmaNuel-Network) correo: entropy.casp9@gmail.com
+*/

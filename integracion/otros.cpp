@@ -291,3 +291,10 @@ int obtener_inverso_t(int t)
     }
 }
 
+/*
+ * Desarrollado por:
+ *      Juan Pauolo Moncada(Juanpa) - [@JuanPa](https://github.com/Paulo848) correo: moncadamoralesjuanpaulo@gmail.com
+ *
+ *      Emmanuel López Ramírez(Entropy) - [@EmmaNuel-Network](https://github.com/EmmaNuel-Network) correo: entropy.casp9@gmail.com
+*/
+

@@ -42,3 +42,10 @@ void agregar_region_mascara(unsigned int* src,
 int obtener_inverso_t(int t);
 
 #endif // OTROS_H
+
+/*
+ * Desarrollado por:
+ *      Juan Pauolo Moncada(Juanpa) - [@JuanPa](https://github.com/Paulo848) correo: moncadamoralesjuanpaulo@gmail.com
+ *
+ *      Emmanuel López Ramírez(Entropy) - [@EmmaNuel-Network](https://github.com/EmmaNuel-Network) correo: entropy.casp9@gmail.com
+*/

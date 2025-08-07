@@ -16,3 +16,11 @@ unsigned int* loadSeedMasking(const char* nombreArchivo, int &seed, int &n_pixel
 unsigned int** cargar_txts(unsigned char* M, int& n_txt, int& largo_mascara);
 
 #endif // IMAGENES_Y_TXT_H
+
+
+/*
+ * Desarrollado por:
+ *      Juan Pauolo Moncada(Juanpa) - [@JuanPa](https://github.com/Paulo848) correo: moncadamoralesjuanpaulo@gmail.com
+ *
+ *      Emmanuel López Ramírez(Entropy) - [@EmmaNuel-Network](https://github.com/EmmaNuel-Network) correo: entropy.casp9@gmail.com
+*/
